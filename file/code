@@ -1,0 +1,90 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Question {
+    private String question;
+    private String[] choices;
+    private int answer;
+
+    public Question(String question, String[] choices, int answer) {
+        this.question = question;
+        this.choices = choices;
+        this.answer = answer;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String[] getChoices() {
+        return choices;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }
+}
+
+public class MathQuiz {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        ArrayList<Question> questions = new ArrayList<>();
+
+        questions.add(new Question("What is 5 + 5?",
+            new String[]{"8", "10", "12", "15"}, 2));
+
+        questions.add(new Question("What is 6 x 3?",
+            new String[]{"12", "15", "18", "20"}, 3));
+
+        questions.add(new Question("What is 12 / 3?",
+            new String[]{"2", "3", "4", "6"}, 3));
+
+        questions.add(new Question("What is 20 - 7?",
+            new String[]{"11", "12", "13", "14"}, 3));
+
+        questions.add(new Question("What is 25% of 100?",
+            new String[]{"10", "20", "25", "50"}, 3));
+
+        questions.add(new Question("What is 8 x 7?",
+            new String[]{"48", "54", "56", "64"}, 3));
+
+        questions.add(new Question("What is the square root of 81?",
+            new String[]{"7", "8", "9", "10"}, 3));
+
+        int score = 0;
+
+        System.out.println("== MATH QUIZ ==");
+
+        
+        for (int i = 0; i < questions.size(); i++) {
+
+            Question q = questions.get(i);
+
+            System.out.println("\n" + (i + 1) + ". "
+                + q.getQuestion());
+
+            String[] choices = q.getChoices();
+
+            for (int j = 0; j < choices.length; j++) {
+                System.out.println((j + 1) + ". " + choices[j]);
+            }
+
+            System.out.print("Your answer: ");
+            int userAnswer = input.nextInt();
+
+            if (userAnswer == q.getAnswer()) {
+                System.out.println("Correct!");
+                score += 10;
+            } else {
+                System.out.println("Incorrect!");
+            }
+        }
+
+        System.out.println("\n== QUIZ RESULT ==");
+        System.out.println("Your Score: " + score + " / 70");
+
+        input.close();
+    }
+}
